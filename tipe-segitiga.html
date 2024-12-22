@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tipe Segitiga</title>
+  </head>
+  <body>
+    <h1>Menentukan Jenis Segitiga</h1>
+    <p>Sisi A: <input type="number" id="sisiA" /></p>
+    <p>Sisi B: <input type="number" id="sisiB" /></p>
+    <p>Sisi C: <input type="number" id="sisiC" /></p>
+    <button onclick="tentukanSegitiga()">Tentukan</button>
+    <p id="hasil">Hasil:</p>
+
+    <script>
+      function tentukanSegitiga() {
+        const a = parseFloat(document.getElementById("sisiA").value);
+        const b = parseFloat(document.getElementById("sisiB").value);
+        const c = parseFloat(document.getElementById("sisiC").value);
+
+        // validasi apakah sisi-sisi dapat memebntuk segitiga
+
+        if (a + b <= c || a + c <= b || b + c <= a) {
+          document.getElementById("hasil").innerText = `Hasil: Tidak dapat membentuk segitiga.`;
+        }
+
+        let jenis;
+
+        if (a === b && b === c) {
+          jenis = "Segitiga Sama Sisi";
+        } else if ((a === b && b === c) || a === c) {
+          jenis = "Segitiga Sama Kaki";
+        } else {
+          jenis = "Segitiga Sembarang";
+        }
+
+        // Tampilkan hasil
+        document.getElementById("hasil").innerText = `Hasil: ${jenis}`;
+      }
+    </script>
+  </body>
+</html>
