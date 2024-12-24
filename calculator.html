@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Sederhana</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f9;
+      }
+      .calculator {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 300px;
+      }
+      .calculator input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .calculator button {
+        width: 48%;
+        padding: 10px;
+        margin: 5px 1%;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .calculator button:nth-child(odd) {
+        background-color: #007bff;
+        color: #fff;
+      }
+      .calculator button:nth-child(even) {
+        background-color: #28a745;
+        color: #fff;
+      }
+      .calculator button:active {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <h2>Kalkulator Sederhana</h2>
+      <input type="number" id="num1" placeholder="Angka pertama" />
+      <input type="number" id="num2" placeholder="Angka kedua" />
+      <div>
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">-</button>
+        <button onclick="calculate('*')">*</button>
+        <button onclick="calculate('/')">/</button>
+      </div>
+      <div>
+        <button onclick="clearFields()">Hapus</button>
+      </div>
+      <h3 id="result">Hasil:</h3>
+    </div>
+
+    <script>
+      function calculate(operator) {
+        const num1 = parseFloat(document.getElementById("num1").value);
+        const num2 = parseFloat(document.getElementById("num2").value);
+
+        let result;
+
+        if (isNaN(num1) || isNaN(num2)) {
+          result = "Harap masukkan angka yg valid";
+        } else {
+          switch (operator) {
+            case "+":
+              result = num1 + num2;
+              break;
+            case "-":
+              result = num1 - num2;
+              break;
+            case "*":
+              result = num1 * num2;
+              break;
+            case "/":
+              result = num2 !== 0 ? num1 / num2 : "Tidak dapat membagi dengan nol";
+              break;
+            default:
+              result = "Operator tidak valid";
+          }
+        }
+
+        document.getElementById("result").innerText = `Hasil: ${result}`;
+      }
+
+      function clearFields() {
+        document.getElementById("num1").value = "";
+        document.getElementById("num2").value = "";
+        document.getElementById("result").innerText = "";
+      }
+    </script>
+  </body>
+</html>
